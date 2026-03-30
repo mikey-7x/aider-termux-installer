@@ -17,7 +17,7 @@ Install [Termux](https://f-droid.org/en/packages/com.termux/) from F-Droid. *(Do
 
 **1. Clone this repository:**
 ```bash
-git clone [https://github.com/mikey-7x/aider-termux-installer.git](https://github.com/mikey-7x/aider-termux-installer.git)
+git clone https://github.com/mikey-7x/aider-termux-installer.git
 cd aider-termux-installer
 ```
 
@@ -34,3 +34,7 @@ Whenever you open a new Termux session, activate the virtual environment before 
 source ~/aider-env/bin/activate
 aider --model openrouter/deepseek/deepseek-r1
 ```
+
+## **📜 Credits**  
+Developed by **[mikey-7x](https://github.com/mikey-7x)** 🚀🔥  
+
