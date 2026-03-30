@@ -15,7 +15,7 @@ Install [Termux](https://f-droid.org/en/packages/com.termux/) from F-Droid. *(Do
 
 ## 🛠️ Installation
 
-**1. Clone this repository:**
+1. Clone this repository:
 ```bash
 git clone https://github.com/mikey-7x/aider-termux-installer.git
 cd aider-termux-installer
@@ -28,7 +28,7 @@ chmod +x install.sh
 ./install.sh
 ```
 
-**3. Set Your API Key & Run:**
+3. Set Your API Key & Run:
 Aider requires an API key to connect to AI models. We recommend OpenRouter for free/cheap access to DeepSeek and Llama. Get a key at [openrouter.ai](https://openrouter.ai/), then run:
 
 ```bash
