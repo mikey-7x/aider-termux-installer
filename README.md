@@ -28,10 +28,17 @@ chmod +x install.sh
 ./install.sh
 ```
 
-3. Activate and Run:
-Whenever you open a new Termux session, activate the virtual environment before starting Aider:
-```
+**3. Set Your API Key & Run:**
+Aider requires an API key to connect to AI models. We recommend OpenRouter for free/cheap access to DeepSeek and Llama. Get a key at [openrouter.ai](https://openrouter.ai/), then run:
+
+```bash
+# Export your API key so Aider can use it
+export OPENROUTER_API_KEY="your_api_key_here"
+
+# Activate the virtual environment
 source ~/aider-env/bin/activate
+
+# Launch Aider with DeepSeek-R1
 aider --model openrouter/deepseek/deepseek-r1
 ```
 
