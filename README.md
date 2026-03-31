@@ -1,6 +1,6 @@
 ![N3](N3.png)
 
-# Aider Native Android Installer 🤖📱
+#  👿💮☃️🌲🏵️🍋‍🟩[1]Aider Native Android Installer 🤖📱
 
 A fully offline, native auto-installer for running [Aider](https://aider.chat/) and a full **X11 Linux Desktop** environment natively in Termux on Android. 
 
