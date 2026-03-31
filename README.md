@@ -82,7 +82,7 @@ export PATH="/root/.local/bin:$PATH"
 
 🔑 Phase 2: NVIDIA API Configuration
 NVIDIA hosts free, state-of-the-art open-source models. To use them, you need an API key.
- * Go to build.nvidia.com.
+ * Go to [build.nvidia.com](https://build.nvidia.com/explore/discover)
  * Log in and navigate to your preferred model (e.g., Kimi-k2.5 or Nemotron-3-super).
  * Click View Code or Generate API Key.
  * Copy the generated key (it should start with nvapi-).
