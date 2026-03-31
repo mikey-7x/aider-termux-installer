@@ -1,6 +1,6 @@
 ![N3](N3.png)
 
-#  👿💮☃️🌲🏵️🍋‍🟩[1]Aider Native Android Installer 🤖📱
+# 🍋‍🟩[1]Aider Native Android Installer 🍋‍🟩📱
 
 A fully offline, native auto-installer for running [Aider](https://aider.chat/) and a full **X11 Linux Desktop** environment natively in Termux on Android. 
 
@@ -46,7 +46,8 @@ source ~/aider-env/bin/activate
 aider --model openrouter/deepseek/deepseek-r1
 ```
 
-Aider + NVIDIA NIM on Termux (Ubuntu PRoot)
+#  🍋‍🟩[2]Aider + NVIDIA NIM on Termux (Ubuntu PRoot)🍋‍🟩
+
 A complete guide to installing and configuring the Aider terminal coding agent using NVIDIA's free NIM APIs. This setup is specifically optimized for running within an Ubuntu PRoot environment on Android via Termux, providing desktop-grade AI coding assistance on mobile architectures.
 
 🚀 Phase 1: Installation
