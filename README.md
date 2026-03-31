@@ -44,6 +44,76 @@ source ~/aider-env/bin/activate
 aider --model openrouter/deepseek/deepseek-r1
 ```
 
+Aider + NVIDIA NIM on Termux (Ubuntu PRoot)
+A complete guide to installing and configuring the Aider terminal coding agent using NVIDIA's free NIM APIs. This setup is specifically optimized for running within an Ubuntu PRoot environment on Android via Termux, providing desktop-grade AI coding assistance on mobile architectures.
+
+🚀 Phase 1: Installation
+Due to PEP 668 ("externally managed environments") in modern Ubuntu, we must isolate the installation using a Python virtual environment and the ultra-fast uv package manager.
+Run the following commands sequentially in your Ubuntu terminal:
+# 1. Create and enter the project directory
+```
+mkdir aider
+cd aider
+```
+
+# 2. Create and activate a Python virtual environment
+```
+python3 -m venv aider_env
+source aider_env/bin/activate
+```
+
+# 3. Install the 'uv' package manager
+```
+pip install uv
+```
+
+# 4. Install Aider globally using uv
+```
+python -m uv tool install --force --python python3.12 aider-chat@latest
+```
+
+# 5. Add Aider to your system PATH
+```
+export PATH="/root/.local/bin:$PATH"
+```
+
+🔑 Phase 2: NVIDIA API Configuration
+NVIDIA hosts free, state-of-the-art open-source models. To use them, you need an API key.
+ * Go to build.nvidia.com.
+ * Log in and navigate to your preferred model (e.g., Kimi-k2.5 or Nemotron-3-super).
+ * Click View Code or Generate API Key.
+ * Copy the generated key (it should start with nvapi-).
+Set the Environment Variable
+For Ubuntu / Linux (Termux):
+echo "NVIDIA_NIM_API_KEY=nvapi-YOUR_API_KEY_HERE" > .env
+
+For Windows (PowerShell):
+"NVIDIA_NIM_API_KEY=nvapi-YOUR_API_KEY_HERE" | Out-File -FilePath .env -Encoding ascii
+
+🧠 Phase 3: Launching Aider
+Launch Aider by specifying the nvidia_nim/ provider prefix followed by the model registry name.
+For Moonshot AI (Terminal Coding):
+aider --model nvidia_nim/moonshotai/kimi-k2.5
+
+For Z.ai GLM-5:
+aider --model nvidia_nim/z.ai/glm-5
+
+🛠️ Troubleshooting: The "Bulletproof" Fallback Method
+Sometimes, API endpoints experience routing bugs, resulting in 404 Not Found errors or the terminal freezing on Waiting for....
+If the standard nvidia_nim/ prefix fails, you can bypass the routing logic entirely by using the OpenAI compatibility layer.
+
+1. Overwrite your .env file with the OpenAI base URL and your NVIDIA key:
+```
+echo "OPENAI_API_BASE=https://integrate.api.nvidia.com/v1" > .env
+echo "OPENAI_API_KEY=nvapi-YOUR_API_KEY_HERE" >> .env
+```
+
+2. Launch Aider using the openai/ prefix instead:
+Example: Launching Nemotron-3-Super (1-Million Context Window)
+```
+aider --model openai/nvidia/nemotron-3-super-120b-a12b
+```
+
 ## **📜 Credits**  
 Developed by **[mikey-7x](https://github.com/mikey-7x)** 🚀🔥  
 
