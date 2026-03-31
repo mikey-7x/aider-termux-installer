@@ -88,18 +88,26 @@ NVIDIA hosts free, state-of-the-art open-source models. To use them, you need an
  * Copy the generated key (it should start with nvapi-).
 Set the Environment Variable
 For Ubuntu / Linux (Termux):
+```
 echo "NVIDIA_NIM_API_KEY=nvapi-YOUR_API_KEY_HERE" > .env
+```
 
 For Windows (PowerShell):
+```
 "NVIDIA_NIM_API_KEY=nvapi-YOUR_API_KEY_HERE" | Out-File -FilePath .env -Encoding ascii
+```
 
 🧠 Phase 3: Launching Aider
 Launch Aider by specifying the nvidia_nim/ provider prefix followed by the model registry name.
 For Moonshot AI (Terminal Coding):
+```
 aider --model nvidia_nim/moonshotai/kimi-k2.5
+```
 
 For Z.ai GLM-5:
+```
 aider --model nvidia_nim/z.ai/glm-5
+```
 
 🛠️ Troubleshooting: The "Bulletproof" Fallback Method
 Sometimes, API endpoints experience routing bugs, resulting in 404 Not Found errors or the terminal freezing on Waiting for....
