@@ -1,3 +1,5 @@
+[N3](N3)
+
 # Aider Native Android Installer 🤖📱
 
 A fully offline, native auto-installer for running [Aider](https://aider.chat/) and a full **X11 Linux Desktop** environment natively in Termux on Android. 
@@ -50,29 +52,30 @@ A complete guide to installing and configuring the Aider terminal coding agent u
 🚀 Phase 1: Installation
 Due to PEP 668 ("externally managed environments") in modern Ubuntu, we must isolate the installation using a Python virtual environment and the ultra-fast uv package manager.
 Run the following commands sequentially in your Ubuntu terminal:
-# 1. Create and enter the project directory
+
+1. Create and enter the project directory
 ```
 mkdir aider
 cd aider
 ```
 
-# 2. Create and activate a Python virtual environment
+2. Create and activate a Python virtual environment
 ```
 python3 -m venv aider_env
 source aider_env/bin/activate
 ```
 
-# 3. Install the 'uv' package manager
+3. Install the 'uv' package manager
 ```
 pip install uv
 ```
 
-# 4. Install Aider globally using uv
+4. Install Aider globally using uv
 ```
 python -m uv tool install --force --python python3.12 aider-chat@latest
 ```
 
-# 5. Add Aider to your system PATH
+5. Add Aider to your system PATH
 ```
 export PATH="/root/.local/bin:$PATH"
 ```
