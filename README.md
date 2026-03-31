@@ -97,7 +97,8 @@ For Windows (PowerShell):
 "NVIDIA_NIM_API_KEY=nvapi-YOUR_API_KEY_HERE" | Out-File -FilePath .env -Encoding ascii
 ```
 
-🧠 Phase 3: Launching Aider
+🧠 Phase 3:Launching Aider
+
 Launch Aider by specifying the nvidia_nim/ provider prefix followed by the model registry name.
 For Moonshot AI (Terminal Coding):
 ```
@@ -110,6 +111,7 @@ aider --model nvidia_nim/z.ai/glm-5
 ```
 
 🛠️ Troubleshooting: The "Bulletproof" Fallback Method
+
 Sometimes, API endpoints experience routing bugs, resulting in 404 Not Found errors or the terminal freezing on Waiting for....
 If the standard nvidia_nim/ prefix fails, you can bypass the routing logic entirely by using the OpenAI compatibility layer.
 
@@ -120,6 +122,7 @@ echo "OPENAI_API_KEY=nvapi-YOUR_API_KEY_HERE" >> .env
 ```
 
 2. Launch Aider using the openai/ prefix instead:
+
 Example: Launching Nemotron-3-Super (1-Million Context Window)
 ```
 aider --model openai/nvidia/nemotron-3-super-120b-a12b
