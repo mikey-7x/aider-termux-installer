@@ -128,6 +128,10 @@ Example: Launching Nemotron-3-Super (1-Million Context Window)
 ```
 aider --model openai/nvidia/nemotron-3-super-120b-a12b
 ```
+with white text:
+```
+aider --model openai/nvidia/nemotron-3-super-120b-a12b --assistant-output-color white --user-input-color white
+```
 
 ## **📜 Credits**  
 Developed by **[mikey-7x](https://github.com/mikey-7x)** 🚀🔥  
