@@ -51,6 +51,7 @@ aider --model openrouter/deepseek/deepseek-r1
 A complete guide to installing and configuring the Aider terminal coding agent using NVIDIA's free NIM APIs. This setup is specifically optimized for running within an Ubuntu PRoot environment on Android via Termux, providing desktop-grade AI coding assistance on mobile architectures.
 
 🚀 Phase 1: Installation
+
 Due to PEP 668 ("externally managed environments") in modern Ubuntu, we must isolate the installation using a Python virtual environment and the ultra-fast uv package manager.
 Run the following commands sequentially in your Ubuntu terminal:
 
@@ -82,6 +83,7 @@ export PATH="/root/.local/bin:$PATH"
 ```
 
 🔑 Phase 2: NVIDIA API Configuration
+
 NVIDIA hosts free, state-of-the-art open-source models. To use them, you need an API key.
  * Go to [build.nvidia.com](https://build.nvidia.com/explore/discover)
  * Log in and navigate to your preferred model (e.g., Kimi-k2.5 or Nemotron-3-super).
