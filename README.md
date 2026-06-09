@@ -28,8 +28,8 @@ git clone https://github.com/mikey-7x/aider-termux-installer.git
 
 # 3. Enter the folder, make it executable, and run the magic!
 cd aider-termux-installer
-chmod +x install.sh
-./install.sh
+chmod +x install2.sh
+./install2.sh
 ```
 
 2. Set Your API Key & Run:
