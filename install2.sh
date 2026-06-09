@@ -3,7 +3,7 @@
 # Aider Native Android Auto-Installer & Desktop Setup
 # ==========================================
 
-# Get the absolute path of the directory where this script lives
+# Safely get the absolute directory where this script is located
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 WHEEL_VAULT="$SCRIPT_DIR/packages"
 
@@ -44,19 +44,30 @@ export CFLAGS="-I/data/data/com.termux/files/usr/include"
 echo ""
 echo "=== Installing Pre-Compiled Packages ==="
 
-# 1. Install SciPy from GitHub Releases
+# 1. Install the massive SciPy file directly from GitHub Releases
 echo "[*] Downloading and installing SciPy from GitHub Releases..."
 pip install "https://github.com/mikey-7x/aider-termux-installer/releases/download/v1.0/scipy-1.15.3-cp313-cp313-android_24_arm64_v8a.whl"
 
-# 2. Install local wheel files safely
+# 2. Install the local files
 echo "[*] Detecting local pre-compiled packages in $WHEEL_VAULT..."
 if [ -d "$WHEEL_VAULT" ]; then
+    
+    # Auto-fix: Rename any strict android_28 tags to match Termux's android_24 expectation
+    echo "[*] Checking for platform tag mismatches..."
+    for file in "$WHEEL_VAULT"/*android_28*.whl; do
+        if [ -e "$file" ]; then
+            new_file="${file//_28_/_24_}"
+            mv "$file" "$new_file"
+            echo "    -> Auto-renamed to $(basename "$new_file")"
+        fi
+    done
+
     echo "[*] Installing remaining dependencies directly from local vault..."
     pip install --no-index --find-links="$WHEEL_VAULT" "$WHEEL_VAULT"/*.whl
     
-    echo "[*] Fetching aider-chat online (using vault for dependencies)..."
-    # Allowed to check index to find the aider-chat core package
-    pip install --find-links="$WHEEL_VAULT" aider-chat==0.86.2
+    # Run a final check to lock Aider into the system, bypassing the Python 3.13 version block
+    echo "[*] Fetching aider-chat..."
+    pip install --ignore-requires-python --find-links="$WHEEL_VAULT" aider-chat==0.86.2
     
     echo ""
     echo "================================================="
@@ -67,4 +78,5 @@ if [ -d "$WHEEL_VAULT" ]; then
     echo "  aider --model openrouter/deepseek/deepseek-r1"
 else
     echo "[!] Error: Vault directory $WHEEL_VAULT not found!"
+    echo "[!] Make sure you run this script from inside the downloaded 'aider-termux-installer' folder."
 fi
