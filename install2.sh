@@ -48,7 +48,7 @@ echo "=== Installing Pre-Compiled Packages ==="
 echo "[*] Downloading and installing SciPy from GitHub Releases..."
 pip install "https://github.com/mikey-7x/aider-termux-installer/releases/download/v1.0/scipy-1.15.3-cp313-cp313-android_24_arm64_v8a.whl"
 
-# 2. Install the local files
+# 2. Process and Install local files
 echo "[*] Detecting local pre-compiled packages in $WHEEL_VAULT..."
 if [ -d "$WHEEL_VAULT" ]; then
     
@@ -61,6 +61,13 @@ if [ -d "$WHEEL_VAULT" ]; then
             echo "    -> Auto-renamed to $(basename "$new_file")"
         fi
     done
+
+    # Clean up duplicate hf_xet wheel to prevent dependency collisions
+    echo "[*] Removing conflicting duplicate packages..."
+    if [ -f "$WHEEL_VAULT/hf_xet-1.2.0-py3-none-any.whl" ]; then
+        rm "$WHEEL_VAULT/hf_xet-1.2.0-py3-none-any.whl"
+        echo "    -> Deleted duplicate hf_xet pure-Python wheel."
+    fi
 
     echo "[*] Installing remaining dependencies directly from local vault..."
     pip install --no-index --find-links="$WHEEL_VAULT" "$WHEEL_VAULT"/*.whl
