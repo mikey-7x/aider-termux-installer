@@ -45,6 +45,15 @@ source ~/aider-env/bin/activate
 # Launch Aider with DeepSeek-R1
 aider --model openrouter/deepseek/deepseek-r1
 ```
+🎏​A few handy commands to remember:
+
+🔸​/add <file> (Add a file to the chat so the AI can read/edit it)
+
+🔸​/drop <file> (Remove a file from the chat so the AI stops focusing on it)
+
+🔸​/undo (If the AI writes bad code, this instantly reverts the file back to how it was)
+
+​🔸/exit (To close Aider)
 
 #  🍋‍🟩[2]Aider + NVIDIA NIM on Termux (Ubuntu PRoot)🍋‍🟩
 
