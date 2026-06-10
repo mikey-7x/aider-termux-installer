@@ -73,15 +73,11 @@ if [ -d "$WHEEL_VAULT" ]; then
     fi
 
     echo "[*] Installing remaining dependencies directly from local vault..."
-    pip install --no-index --find-links="$WHEEL_VAULT" "$WHEEL_VAULT"/*.whl
+    pip install --find-links="$WHEEL_VAULT" "$WHEEL_VAULT"/*.whl
     
     # Run a final check to lock Aider into the system, bypassing the Python 3.13 version block
     echo "[*] Fetching aider-chat..."
     pip install --ignore-requires-python --find-links="$WHEEL_VAULT" aider-chat==0.86.2
-    
-    # Install fallback language parser
-    echo "[*] Installing fallback language support..."
-    pip install tree_sitter_languages
 
     # Execute the Surgical Bypass for the broken YAML C++ scanner
     echo "[*] Applying surgical bypass for YAML parser..."
