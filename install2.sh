@@ -30,7 +30,8 @@ pkg install -y proot-distro
 
 echo ""
 echo "=== Installing Aider Native Dependencies ==="
-pkg install -y python python-numpy python-psutil rust ninja libjpeg-turbo libpng freetype tree-sitter
+# Added clang for C++ standard library linking during wheel builds
+pkg install -y python python-numpy python-psutil rust ninja libjpeg-turbo libpng freetype tree-sitter clang
 
 echo ""
 echo "=== Configuring Python Virtual Environment ==="
@@ -40,6 +41,8 @@ source ~/aider-env/bin/activate
 
 export ANDROID_API_LEVEL=28
 export CFLAGS="-I/data/data/com.termux/files/usr/include"
+# Force Termux to link the C++ shared library for native extensions
+export LDFLAGS="-lc++_shared" 
 
 echo ""
 echo "=== Installing Pre-Compiled Packages ==="
@@ -76,13 +79,42 @@ if [ -d "$WHEEL_VAULT" ]; then
     echo "[*] Fetching aider-chat..."
     pip install --ignore-requires-python --find-links="$WHEEL_VAULT" aider-chat==0.86.2
     
+    # Install fallback language parser
+    echo "[*] Installing fallback language support..."
+    pip install tree_sitter_languages
+
+    # Execute the Surgical Bypass for the broken YAML C++ scanner
+    echo "[*] Applying surgical bypass for YAML parser..."
+    python -c '
+import os
+file_path = os.path.expanduser("~/aider-env/lib/python3.13/site-packages/tree_sitter_language_pack/__init__.py")
+try:
+    with open(file_path, "r") as f:
+        content = f.read()
+    
+    # Comment out the broken YAML imports
+    content = content.replace("import tree_sitter_yaml", "# import tree_sitter_yaml")
+    content = content.replace("\"yaml\": tree_sitter_yaml.language(),", "# \"yaml\": tree_sitter_yaml.language(),")
+    
+    with open(file_path, "w") as f:
+        f.write(content)
+    print("    -> YAML parser safely disabled.")
+except Exception as e:
+    print(f"    -> [!] Patch failed: {e}")
+'
+
     echo ""
     echo "================================================="
-    echo "✅ SUCCESS! Aider and Termux:X11 Setup is Complete."
+    echo "✅ SUCCESS! Aider Setup is Fully Complete."
     echo "================================================="
-    echo "To start coding, simply run:"
-    echo "  source ~/aider-env/bin/activate"
-    echo "  aider --model openrouter/deepseek/deepseek-r1"
+    echo "To start coding with Nvidia NIM, copy and paste the block below:"
+    echo "-------------------------------------------------"
+    echo "source ~/aider-env/bin/activate"
+    echo "export OPENAI_API_BASE=\"https://integrate.api.nvidia.com/v1\""
+    echo "export OPENAI_API_KEY=\"nvapi-YOUR_API_KEY_HERE\""
+    echo "aider --model openai/meta/llama-3.1-70b-instruct --assistant-output-color white --user-input-color white"
+    echo "-------------------------------------------------"
+    echo "Note: Replace 'nvapi-YOUR_API_KEY_HERE' with your actual key."
 else
     echo "[!] Error: Vault directory $WHEEL_VAULT not found!"
     echo "[!] Make sure you run this script from inside the downloaded 'aider-termux-installer' folder."
